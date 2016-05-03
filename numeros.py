@@ -1,7 +1,7 @@
-class Ordinais:
+class Cardinais:
     def __init__(self):
         self._unidade = {'0': "zero", '1': "um", '2': "dois",
-                        '3': "três", '4': "qunumtro", '5': "cinco",
+                        '3': "três", '4': "quatro", '5': "cinco",
                         '6': "seis", '7': "sete", '8': "oito",
                         '9': "nove"}
 
@@ -52,8 +52,11 @@ class Ordinais:
             else:
                 aux_num = self.dezena(num[1:])
 
-            centena = self._centena["{N}00".format(N=num[0])]
-            return "{cen} e {aux}".format(cen=centena, aux=aux_num)
+            if num[0] != '0':
+                centena = self._centena["{N}00".format(N=num[0])]
+                return "{cen} e {aux}".format(cen=centena, aux=aux_num)
+            else:
+                return "e {aux}".format(aux=aux_num)
 
         else:
             return self._centena[num]
@@ -67,4 +70,4 @@ class Ordinais:
         if aux_num == '000':
             return "{m} mil".format(m=aux_mil)
         else:
-            return "{m} mil e {c}".format(m=aux_mil,c=self.centena(aux_num))
+            return "{m} mil {c}".format(m=aux_mil,c=self.centena(aux_num))
