@@ -1,8 +1,8 @@
-# br-Toolkit
+# BR-toolkit
 Caixa de ferramentas para português brasileiro em python3
 
 
-Números Cardinais:
+#### Números Cardinais:
 
 ```python
 
@@ -10,5 +10,5 @@ from numeros import Cardinais
 
 card = Cardinais()
 
-assert (card.transcrever(5), 'cinco') #True
+assert(card.transcrever(5), 'cinco') #True
 ```

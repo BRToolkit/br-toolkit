@@ -1,7 +1,9 @@
 from unittest import TestCase, main
-from numeros import Cardinais
+from texto import Texto
+from random import choice
+from numeros import Cardinais, Ordinais
 
-class Teste(TestCase):
+class Teste_card(TestCase):
     def test_unidade(self):
         cardinais = Cardinais()
         n_lista = [0,1,2,3,4,5]
@@ -47,6 +49,42 @@ class Teste(TestCase):
 
         for num, trans in zip(n_lista,t_lista):
             result = cardinais.transcrever(num)
+            self.assertEqual(result, trans)
+
+class Teste_texto(TestCase):
+    def teste_emo(self):
+        emo = Texto()
+        _emo = choice(emo.emocoes)
+        self.assertIsNotNone(_emo)
+
+class Teste_ord(TestCase):
+    def test_unidade(self):
+        ordinais = Ordinais()
+        n_lista = [1,2,3,4,5]
+        t_lista = ['primeiro','segundo','terceiro', 'quarto', 'quinto']
+
+        for num, trans in zip(n_lista,t_lista):
+            result = ordinais.transcrever(num)
+            self.assertEqual(result, trans)
+
+    def test_centena(self):
+        ordinais = Ordinais()
+        n_lista = [100,200,300,400,500,600,700,800,900]
+        t_lista = ['centésimo','ducentésimo','trecentésimo', 'quadrigentésimo', 'quingentésimo',
+                    'sexcentésimo', 'septigentésimo', 'octigentésimo', 'nongentésimo']
+
+        for num, trans in zip(n_lista,t_lista):
+            result = ordinais.transcrever(num)
+            self.assertEqual(result, trans)
+
+
+    def test_mix(self):
+        ordinais = Ordinais()
+        n_lista = [215, 550, 111]
+        t_lista = ['ducentésimo decimo quinto', 'quingentésimo quinquagésimo', 'centésimo decimo primeiro']
+
+        for num, trans in zip(n_lista,t_lista):
+            result = ordinais.transcrever(num)
             self.assertEqual(result, trans)
 
 if __name__ == '__main__':

@@ -71,3 +71,60 @@ class Cardinais:
             return "{m} mil".format(m=aux_mil)
         else:
             return "{m} mil {c}".format(m=aux_mil,c=self.centena(aux_num))
+
+class Ordinais:
+    def __init__(self):
+        self._unidade = {'1': "primeiro", '2': "segundo",'3': "terceiro",
+                        '4': "quarto", '5': "quinto", '6': "sexto",
+                        '7': "setimo", '8': "oitavo", '9': "novo"}
+
+        self._dezena = {'10': "decimo" , '20': "vigésimo", '30': "trigésimo",
+                        '40': "quadragésimo", '50': "quinquagésimo", '60': "sexagésimo",
+                        '70': "septuagésimo", '80': "octogésimo", '90': "nonagésimo"}
+
+        self._centena = {'100': "centésimo", '200': "ducentésimo", '300': "trecentésimo",
+                        '400': "quadrigentésimo", '500': "quingentésimo", '600': "sexcentésimo",
+                        '700': "septigentésimo", '800': "octigentésimo", '900': "nongentésimo"}
+
+    def transcrever(self, num):
+        _num = str(num)
+        tam_num = len(_num)
+
+        if tam_num == 1:
+            return self.unidade(_num)
+        elif tam_num == 2:
+            return self.dezena(_num)
+        elif tam_num == 3:
+            return self.centena(_num)
+        elif tam_num == 4 or tam_num < 7:
+            return self.milhar(_num)
+
+    def unidade(self, num):
+        return self._unidade[num]
+
+    def dezena(self, num):
+        if num not in self._dezena:
+            unidade = self.unidade(num[1])
+            dezena = self._dezena["{N}0".format(N=num[0])]
+            return "{dez} {uni}".format(dez=dezena, uni=unidade)
+        else:
+            return self._dezena[num]
+
+    def centena(self, num):
+        if num not in self._centena:
+            if int(num[1]) < 1:
+                aux_num = self.unidade(num[2])
+            else:
+                aux_num = self.dezena(num[1:])
+
+            if num[0] != '0':
+                centena = self._centena["{N}00".format(N=num[0])]
+                return "{cen} {aux}".format(cen=centena, aux=aux_num)
+            else:
+                return "{aux}".format(aux=aux_num)
+
+        else:
+            return self._centena[num]
+
+    def milhar(self, num):
+        pass
