@@ -1,5 +1,8 @@
 class Cardinais:
     def __init__(self):
+        """
+        Define os dicionários para poderem ser implementados nas diferentes classes de Unidades, Dezenas e Centenas
+        """
         self._unidade = {'0': "zero", '1': "um", '2': "dois",
                         '3': "três", '4': "quatro", '5': "cinco",
                         '6': "seis", '7': "sete", '8': "oito",
@@ -19,6 +22,9 @@ class Cardinais:
                         '900': "novessentos"}
 
     def transcrever(self, num):
+        """
+        Função para definição da quantidade de casas e de qual tipo de número a string *num* se enquadra
+        """
         _num = str(num)
         tam_num = len(_num)
 
@@ -34,6 +40,9 @@ class Cardinais:
             return self.milhoes(_num)
 
     def unidade(self, num):
+        """
+        Função destinada ao processamento da casa de unidades
+        """
         return self._unidade[num]
 
     def dezena(self, num):
@@ -45,6 +54,9 @@ class Cardinais:
             return self._dezena[num]
 
     def centena(self, num):
+        """
+        Função que serve para a definição de números com casa máxima da centena
+        """
         if num == '100':
             return 'cem'
 
@@ -64,24 +76,32 @@ class Cardinais:
             return self._centena[num]
 
     def milhar(self, num):
-        *mil, cen,dez,uni = num
+        """
+        Função que serve para a definição de números com casa máxima dos milhares
+        """
+        *mil, cen,dez,uni = num #Define uma divisão de números que são utilizados
 
-        aux_mil = self.transcrever("".join(mil))
-        aux_num = "{c}{d}{u}".format(c=cen,d=dez,u=uni)
+        aux_mil = self.transcrever("".join(mil)) #São pegos apenas os números que são da ordem dos milhares e são transcritos
+        aux_num = "{c}{d}{u}".format(c=cen,d=dez,u=uni) # Todo o resto é separado
 
+        # Aqui há a verificação dos números e a junção para a formatação da String
         if aux_num == '000':
-            return "{m} mil".format(m=aux_mil)
+            return "{m} mil".format(m=aux_mil) # Escreve apenas para o caso do número terminar em 000
         else:
-            return "{m} mil {c}".format(m=aux_mil,c=self.centena(aux_num))
+            return "{m} mil {c}".format(m=aux_mil,c=self.centena(aux_num)) # Junta os valores pegos e os reescreve
 
     def milhoes(self, num):
-        *milhoes, mil2, mil1, mil0, cen, dez, uni = num
-        aux_milhoes = self.transcrever("".join(milhoes))
+        """
+        Função para escrever os números da casa dos milhões
+        """
+        *milhoes, mil2, mil1, mil0, cen, dez, uni = num # Define uma nova divisão dos números
+        aux_milhoes = self.transcrever("".join(milhoes)) # Junta-se os números e os processa
+        # Aplica uma regressão para pegar os números a partir da casa dos milhares
         aux_num = "{m2}{m1}{m0}{c}{d}{u}".format(m2=mil2,m1=mil1,m0=mil0,c=cen,d=dez,u=uni)
         if aux_num == "000000":
-            return(aux_milhoes + "milhões")
+            return(aux_milhoes + "milhões") # Escreve os números, caso seja 000000
         else:
-            return("{mi} milhões e {m}").format(mi=aux_milhoes,m=self.milhar(aux_num))
+            return("{mi} milhões e {m}").format(mi=aux_milhoes,m=self.milhar(aux_num)) # Escreve o número completo
 
 class Ordinais:
     def __init__(self):
@@ -138,4 +158,5 @@ class Ordinais:
             return self._centena[num]
 
     def milhar(self, num):
-        pass
+        *mil, cen, dez, uni = num
+        return(mil)
