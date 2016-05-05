@@ -30,6 +30,8 @@ class Cardinais:
             return self.centena(_num)
         elif tam_num == 4 or tam_num < 7:
             return self.milhar(_num)
+        elif tam_num == 7 or tam_num < 10:
+            return self.milhoes(_num)
 
     def unidade(self, num):
         return self._unidade[num]
@@ -71,6 +73,15 @@ class Cardinais:
             return "{m} mil".format(m=aux_mil)
         else:
             return "{m} mil {c}".format(m=aux_mil,c=self.centena(aux_num))
+
+    def milhoes(self, num):
+        *milhoes, mil2, mil1, mil0, cen, dez, uni = num
+        aux_milhoes = self.transcrever("".join(milhoes))
+        aux_num = "{m2}{m1}{m0}{c}{d}{u}".format(m2=mil2,m1=mil1,m0=mil0,c=cen,d=dez,u=uni)
+        if aux_num == "000000":
+            return(aux_milhoes + "milhões")
+        else:
+            return("{mi} milhões e {m}").format(mi=aux_milhoes,m=self.milhar(aux_num))
 
 class Ordinais:
     def __init__(self):
