@@ -62,6 +62,11 @@ class Teste_texto(TestCase):
         nome = choice(emo.emocoes)
         self.assertIsNotNone(nome)
 
+    def teste_stopwords(self):
+        emo = Texto()
+        nome = choice(emo.stopwords)
+        self.assertIsNotNone(nome)        
+
 class Teste_ord(TestCase):
     def test_unidade(self):
         ordinais = Ordinais()
