@@ -31,7 +31,21 @@ assert(_ord.transcrever(5), 'quinto') #True
 from texto import Texto
 from random import choice
 
-emo = Texto()
+texto = Texto()
 
-choice(emo.emocoes) #alegria
+choice(texto.emocoes) #alegria
+```
+
+#### Nomes comuns no brasil:
+
+```python
+
+from texto import Texto
+from random import choice
+
+texto = Texto()
+
+choice(texto.nome) #Eduardo
+choice(texto.nome) #Sophia
+choice(texto.nome) #Davi
 ```
