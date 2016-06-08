@@ -1,7 +1,7 @@
-# Arquivo para definição de classes morfológicas!
+# Arquivo para definição de classes para palavras
 
 class Pronome():
-    
+
     def __init__(self):
         self.pronomesPessoais = ['eu', 'tu', 'ele', 'ela', 'nós','vós', 'eles', 'elas','Pronome Pessoal']
         self.pronomesObliquos = ['me', 'te', 'o', 'a', 'lhe', 'se', 'nos', 'vos', 'os', 'as', 'lhes', 'mim', 'ti', 'ele', 'ela', 'si', 'nós', 'vós', 'eles', 'elas', 'Pronome Oblíquo']
