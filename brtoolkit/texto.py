@@ -1,3 +1,27 @@
+import string
+import collections
+from re import compile
+
+class Geral():
+
+    def palavras(text):
+        """ Método que remove a pontuação da frase
+        para poder retornar um array com todas as
+        palavras de forma limpa """
+
+        regex = compile("\w+")
+        saida = regex.findall(text)
+        return " ".join(saida)
+
+    def conta_palavras(text):
+        """ Função que retorna a contagem de todas
+        as palavras de um texto selecionado pelo
+        usuário"""
+
+        return(collections.Counter(
+        Geral.palavras(text).split(" ")
+        ))
+
 class Texto:
     def __init__(self):
         # Coleção
