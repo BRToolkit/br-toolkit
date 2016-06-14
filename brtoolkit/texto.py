@@ -2,7 +2,7 @@ import string
 import collections
 from re import compile
 
-class Geral():
+class Informacoes():
 
     def palavras(text):
         """ Método que remove a pontuação da frase
