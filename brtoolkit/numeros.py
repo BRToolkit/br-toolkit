@@ -1,8 +1,8 @@
 class Cardinais:
     def __init__(self):
-        """
-        Define os dicionários para poderem ser implementados nas diferentes classes de Unidades, Dezenas e Centenas
-        """
+        """ Define os dicionários para poderem ser implementados nas
+        diferentes classes de Unidades, Dezenas e Centenas """
+
         self._unidade = {'0': "zero", '1': "um", '2': "dois",
                         '3': "três", '4': "quatro", '5': "cinco",
                         '6': "seis", '7': "sete", '8': "oito",
@@ -17,13 +17,14 @@ class Cardinais:
                        '90': "noventa"}
 
         self._centena = {'100': "cento", '200': "duzentos",
-                        '300': "trezentos", '400': "quatrocentos", '500': "quinhentos",
-                        '600': "seissentos", '700': "setessentos", '800': "oitocentos",
+                        '300': "trezentos", '400': "quatrocentos",
+                        '500': "quinhentos", '600': "seissentos",
+                        '700': "setessentos", '800': "oitocentos",
                         '900': "novessentos"}
 
     def transcrever(self, num):
-        """
-        Função para definição da quantidade de casas e de qual tipo de número a string *num* se enquadra
+        """ Função para definição da quantidade de casas
+        e de qual tipo de número a string *num* se enquadra
         """
         _num = str(num)
         tam_num = len(_num)
@@ -40,9 +41,8 @@ class Cardinais:
             return self.milhoes(_num)
 
     def unidade(self, num):
-        """
-        Função destinada ao processamento da casa de unidades
-        """
+        """ Função destinada ao processamento da
+        casa de unidades """
         return self._unidade[num]
 
     def dezena(self, num):
@@ -76,32 +76,32 @@ class Cardinais:
             return self._centena[num]
 
     def milhar(self, num):
-        """
-        Função que serve para a definição de números com casa máxima dos milhares
-        """
-        *mil, cen,dez,uni = num #Define uma divisão de números que são utilizados
+        """ Função que serve para a definição de números
+        com casa máxima dos milhares """
+        *mil, cen,dez,uni = num
 
-        aux_mil = self.transcrever("".join(mil)) #São pegos apenas os números que são da ordem dos milhares e são transcritos
-        aux_num = "{c}{d}{u}".format(c=cen,d=dez,u=uni) # Todo o resto é separado
+        aux_mil = self.transcrever("".join(mil))
+        aux_num = "{c}{d}{u}".format(c=cen,d=dez,u=uni)
 
-        # Aqui há a verificação dos números e a junção para a formatação da String
         if aux_num == '000':
-            return "{m} mil".format(m=aux_mil) # Escreve apenas para o caso do número terminar em 000
+            return "{m} mil".format(m=aux_mil)
         else:
-            return "{m} mil {c}".format(m=aux_mil,c=self.centena(aux_num)) # Junta os valores pegos e os reescreve
+            return "{m} mil {c}".format(m=aux_mil,c=self.centena(aux_num))
 
     def milhoes(self, num):
         """
         Função para escrever os números da casa dos milhões
         """
-        *milhoes, mil2, mil1, mil0, cen, dez, uni = num # Define uma nova divisão dos números
-        aux_milhoes = self.transcrever("".join(milhoes)) # Junta-se os números e os processa
-        # Aplica uma regressão para pegar os números a partir da casa dos milhares
+        *milhoes, mil2, mil1, mil0, cen, dez, uni = num
+        aux_milhoes = self.transcrever("".join(milhoes))
+
         aux_num = "{m2}{m1}{m0}{c}{d}{u}".format(m2=mil2,m1=mil1,m0=mil0,c=cen,d=dez,u=uni)
         if aux_num == "000000":
-            return(aux_milhoes + "milhões") # Escreve os números, caso seja 000000
+            return(aux_milhoes + "milhões")
         else:
-            return("{mi} milhões e {m}").format(mi=aux_milhoes,m=self.milhar(aux_num)) # Escreve o número completo
+            return("{mi} milhões e {m}").format(\
+            mi=aux_milhoes,m=self.milhar(aux_num)\
+            )
 
 class Ordinais:
     def __init__(self):
@@ -113,9 +113,11 @@ class Ordinais:
                         '40': "quadragésimo", '50': "quinquagésimo", '60': "sexagésimo",
                         '70': "septuagésimo", '80': "octogésimo", '90': "nonagésimo"}
 
-        self._centena = {'100': "centésimo", '200': "ducentésimo", '300': "trecentésimo",
-                        '400': "quadrigentésimo", '500': "quingentésimo", '600': "sexcentésimo",
-                        '700': "septigentésimo", '800': "octigentésimo", '900': "nongentésimo"}
+        self._centena = {'100': "centésimo", '200': "ducentésimo",
+                        '300': "trecentésimo", '400': "quadrigentésimo",
+                        '500': "quingentésimo", '600': "sexcentésimo",
+                        '700': "septigentésimo", '800': "octigentésimo",
+                        '900': "nongentésimo"}
 
     def transcrever(self, num):
         _num = str(num)

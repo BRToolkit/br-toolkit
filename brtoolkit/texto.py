@@ -1,4 +1,28 @@
-class Texto:
+import string
+import collections
+from re import compile
+
+class Informacoes():
+
+    def palavras(text):
+        """ Método que remove a pontuação da frase
+        para poder retornar um array com todas as
+        palavras de forma limpa """
+
+        regex = compile("\w+")
+        saida = regex.findall(text)
+        return " ".join(saida)
+
+    def conta_palavras(text):
+        """ Função que retorna a contagem de todas
+        as palavras de um texto selecionado pelo
+        usuário"""
+
+        return(collections.Counter(
+        Geral.palavras(text).split(" ")
+        ))
+
+class Texto():
     def __init__(self):
         # Coleção
         self.emocoes = ['agressividade', 'afetividade', 'aflição', 'alegria', 'altruísmo', 'ambivalência', 'amizade', 'amor', 'angústia', 'ansiedade', 'antipatia', 'antecipação', 'apatia', 'arrependimento', 'arrogância', 'auto', 'piedade', 'avareza', 'bondade', 'bem', 'aventurança', 'benevolência', 'carinho', 'cobiça', 'compaixão', 'confusão', 'ciúme', 'constrangimento', 'coragem', 'culpa', 'curiosidade', 'contentamento', 'criatividade', 'depressão', 'desabafo', 'deslumbramento', 'desprezo', 'dó', 'decepção', 'dúvida', 'desapontamento', 'egoísmo', 'empatia', 'esperança', 'euforia', 'entusiasmo', 'epifania', 'excitação', 'fanatismo', 'felicidade', 'frieza', 'frustração', 'gratificação', 'gratidão', 'histeria', 'hostilidade', 'humor', 'humildade', 'humilhação', 'inspiração', 'interesse', 'indecisão', 'inveja', 'ira', 'isolamento', 'intriga', 'luxúria', 'mágoa', 'mau', 'humor', 'medo', 'melancolia', 'mazela', 'nojo', 'nostalgia', 'ódio', 'orgulho', 'paixão', 'paciência', 'pânico', 'pena', 'piedade', 'possessividade', 'prazer', 'preguiça', 'preocupação', 'paz', 'raiva', 'remorso', 'repugnância', 'resignação', 'ressentimento', 'saudade', 'schadenfreude', 'simpatia', 'soberba', 'sofrimento', 'solidão', 'surpresa', 'susto', 'tranquilidade', 'tédio', 'timidez', 'tristeza', 'vaidade', 'veracidade', 'vergonha', 'vingança']
